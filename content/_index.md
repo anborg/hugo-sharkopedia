@@ -1,7 +1,6 @@
 ---
-title: "Welcome"
-date: 2020-12-13T16:10:24-05:00
-draft: false
+title: "Ananke: a Hugo Theme"
+featured_image: '/images/gohugo-default-sample-hero-image.jpg'
+description: "The last theme you'll ever need. Maybe."
 ---
-
-This is a site all about sharks! Select a shark from the list to learn more:
+Welcome to my blog with some of my work in progress. I've been working on this book idea. You can read some of the chapters below.
