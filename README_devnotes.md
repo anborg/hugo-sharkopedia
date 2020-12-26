@@ -1,31 +1,88 @@
 
-Create a simple hugo proj
+# Create a simple hugo proj
 
-TODO Next: 
-INPROG - final theme must look like this https://gohugo-ananke-theme-demo.netlify.app/
+## TODO Next: 
+
+- INPROG - setup netlify
+    - Ref:https://www.netlify.com/blog/2017/08/17/a-complete-cms-with-no-server-and-18-lines-of-code/
+    - Ref: https://www.smashingmagazine.com/2019/05/switch-wordpress-hugo/
+- BACKLOG - understand themes, and apply a city
+- BACKLOG - add spa
+    - Ref: https://github.com/wildhaber/offline-first-sw 
+
+- DONE - scripting basic hugo 
+- DONE - final theme must look like this https://gohugo-ananke-theme-demo.netlify.app/
     - ref instruction : https://github.com/theNewDynamic/gohugo-theme-ananke
-    - 
 
-BACKLOG - understand themes, and apply a city
-BACKLOG - add spa 
-BACKLOG - setup netlify
 
-DONE - scripting basic hugo 
-
+### npm setup 
+```
+```
+### Create project from scratch
 ```shell script
-hugo new site hugo-sharkopedia
-cd hugo-sharkopedia
+SET PROJ_NAME=hugo-sharkopedia
+mkdir %PROJ_NAME%
+cd %PROJ_NAME%
+hugo new site . --force
 
-#set baseurl empty config
+
+
+```
+### Git checkout and work on existing
+```
+git clone <url>
+cd cd %PROJ_NAME%  
+```
+
+### make tools ready
+
+Netlify login 
+
+```
+npm install netlify-cli -g
+# makesure you are in the project folder
+netlify login
+```
+
+Git lfs (optional)
+
+```
+#Not 
+git lfs install
+# brew install git-lfs
+#specify which files to track in repo 
+git lfs track "static/uploads/*"
+git lfs track "*.jpg"
+```
+
+Netlify lfs (optional)
+
+```
+netlify plugins:install netlify-lm-plugin
+netlify lm:install
+```
+Linking to macos keychain (optional)
+```
+netlify link
+netlify lm:setup
+brew tap netlify/git-credential-netlify
+brew install git-credential-netlify
+```
+
+### Create config file
+```shell script
 cat <<EOT >> config.toml
+# set baseUrl to empty
 baseURL = ""
 languageCode = "en-us"
 title = "Sharkopedia"
 
 EOT
+```
 
+### Create homepage template
 
-#Create homepage template
+```shell script
 touch layouts/index.html
 
 cat <<EOT >> layouts/index.html
@@ -56,9 +113,12 @@ cat <<EOT >> layouts/index.html
 
 
 EOT
+```
 
+### Disable draft setting  in default.md
+This helps to quickly see results while developing
 
-#disable draft in default.md
+```
 cat <<EOT >> archetypes/default.md 
 ---
 title: "{{ replace .Name "-" " " | title }}"
@@ -67,9 +127,10 @@ draft: false
 ---
 
 EOT
+```
 
-
-#Now: create content of homepage
+### Create content of homepage
+```
 hugo new _index.md
 cat <<EOT >> content/_index.md
 ---
@@ -79,23 +140,33 @@ draft: false
 ---
 This is a site all about sharks! Select a shark from the list to learn more:
 EOT
-#Start server
+```
+### Start server
+```shell script
 hugo server &
 curl http://localhost:1313
+```
 
+### TEMPLATES
 
-#TEMPLATES
-
-#Create template for default single page
+### Create template for default single page
+```
 mkdir layouts/_default
 cp layouts/index.html layouts/_default/single.html
-#Crate new content for single page
->hugo new sharks/hammerhead.md
-#Expect hammerhead conent
+```
+### Crate new content for single page
+```
+hugo new sharks/hammerhead.md
+```
+### Expect hammerhead conent
+```
 curl http://localhost:1313/sharks/hammerhead
-# However you won't see it listed in /sharks
+```
+### However you won't see it listed in /sharks
 
-#Create default LIST template
+### Create default LIST template
+
+```
 touch layouts/_default/list.html
 
 cat <<EOT >> layouts/_default/list.html
@@ -131,16 +202,19 @@ cat <<EOT >> layouts/_default/list.html
 </html>
 
 EOT
+```
 
-#Now expect to see /sharks
+### Now expect to see /sharks
+```
 wget http://localhost:1313/sharks
-
-#Create some shark content
+```
+### Create some shark content
+```
 hugo new sharks/mako.md
 hugo new sharks/whale.md
-
-#setup git 
-
+```
+### setup git 
+```
 git init
 echo “public” >> .gitignore
 git add archetypes/ config.toml content/ .gitignore layouts/ data/ themes/ resources/ static/
@@ -150,34 +224,48 @@ git remote add origin https://github.com/anborg/hugo-sharkopedia.git
 git push -u origin main
 ```
 
+
+# Section 2:  Theme
+
 ### Setup themes
+
+Get a new theme, and apply it in current project
+
 
 ```shell script
 
-#Add a new theme and USE it in config
 set THEME_NAME=ananke
-git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+#git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+# It may be better to just copy theme from a theme repository [to reduce future breakage]
+git clone https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+```
+Update Config.toml with theme name 
+```
 echo 'theme = %THEME_NAME%' >> config.toml
+```
 
-# Copy  css from theme 
+
+### Custom styling css 
+
+If you create custom css, make sure to update it in appropriate partial (wherevever css is imported)
+
+```
 mkdir layouts\partials
-cp themes/%THEME_NAME%/layouts/partials/site-header.html layouts/partials/header.html 
+cp themes/%THEME_NAME%/layouts/partials/site-header.html layouts/partials/site-header.html 
 mkdir static\css
 touch static/css/custom-style.css
- 
+``` 
 
+Add the theme & css to config
 
-
-
-
+```
 cat <<EOT >> config.toml
 [params]
 custom_css = ["css/custom-style.css"]
 EOT
-
 ```
 
 
 ### Seetup pwa
 
-Refw : https://techformist.com/add-pwa-hugo/
+Refw : 
