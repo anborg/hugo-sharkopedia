@@ -3,7 +3,7 @@ publish_mode: editorial_workflow
 backend:
   name: git-gateway
   repo: anborg/hugo-sharkopedia
-#  branch: netlify_setup # Branch to update (optional; defaults to master)
+  branch: netlify_setup # Branch to update (optional; defaults to master)
   open_authoring: true
 
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads

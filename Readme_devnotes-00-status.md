@@ -6,6 +6,9 @@
 - BACKLOG - understand themes, and apply a city
 - BACKLOG - add spa
     - Ref: https://github.com/wildhaber/offline-first-sw 
+    https://conight.com/posts/hugo-with-progressive-web-app/
+    https://blog.jeremylikness.com/blog/implement-progressive-web-app-hugo/
+    
 
 - DONE - scripting basic hugo 
 - DONE - final theme must look like this https://gohugo-ananke-theme-demo.netlify.app/
