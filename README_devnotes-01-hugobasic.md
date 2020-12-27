@@ -1,19 +1,6 @@
 
 # Create a simple hugo proj
 
-## TODO Next: 
-
-- INPROG - setup netlify
-    - Ref:https://www.netlify.com/blog/2017/08/17/a-complete-cms-with-no-server-and-18-lines-of-code/
-    - Ref: https://www.smashingmagazine.com/2019/05/switch-wordpress-hugo/
-- BACKLOG - understand themes, and apply a city
-- BACKLOG - add spa
-    - Ref: https://github.com/wildhaber/offline-first-sw 
-
-- DONE - scripting basic hugo 
-- DONE - final theme must look like this https://gohugo-ananke-theme-demo.netlify.app/
-    - ref instruction : https://github.com/theNewDynamic/gohugo-theme-ananke
-
 
 ### npm setup 
 ```
@@ -34,40 +21,6 @@ git clone <url>
 cd cd %PROJ_NAME%  
 ```
 
-### make tools ready
-
-Netlify login 
-
-```
-npm install netlify-cli -g
-# makesure you are in the project folder
-netlify login
-```
-
-Git lfs (optional)
-
-```
-#Not 
-git lfs install
-# brew install git-lfs
-#specify which files to track in repo 
-git lfs track "static/uploads/*"
-git lfs track "*.jpg"
-```
-
-Netlify lfs (optional)
-
-```
-netlify plugins:install netlify-lm-plugin
-netlify lm:install
-```
-Linking to macos keychain (optional)
-```
-netlify link
-netlify lm:setup
-brew tap netlify/git-credential-netlify
-brew install git-credential-netlify
-```
 
 ### Create config file
 ```shell script
