@@ -188,9 +188,9 @@ Get a new theme, and apply it in current project
 ```shell script
 
 set THEME_NAME=ananke
-#git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
 # It may be better to just copy theme from a theme repository [to reduce future breakage]
-git clone https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+#git clone https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
 ```
 Update Config.toml with theme name 
 ```
