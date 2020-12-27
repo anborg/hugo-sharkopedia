@@ -1,7 +1,8 @@
 
 
 title = "My City"
-baseURL = "https://gifted-kirch-eb3996.netlify.app/"
+#baseURL = "https://gifted-kirch-eb3996.netlify.app/"
+baseURL = ""
 languageCode = "en-us"
 theme = "ananke"
 #themesDir = "../.."
