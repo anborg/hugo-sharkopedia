@@ -228,7 +228,8 @@ Refw :
 ### Remove a theme
 # Remove the submodule entry from .git/config
 git submodule deinit -f themes/ananke
-git rm -r  --cached themes/ananke
+git rm -r  --cached themes
+git commit -m "removed submodule theme"
 ls themes/ananke/.git
 rm -Rf themes/ananke/.git
 rm .gitmodules
