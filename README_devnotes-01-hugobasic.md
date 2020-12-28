@@ -227,17 +227,17 @@ Refw :
 
 ### Remove a theme
 # Remove the submodule entry from .git/config
-git submodule deinit -f themes/ananke
-git rm -r  --cached themes
-git commit -m "removed submodule theme"
-ls themes/ananke/.git
-rm -Rf themes/ananke/.git
+SET SUBMODULE=themes/ananke
+git rm themes/ananke && commit
+
+git submodule deinit -f %SUBMODULE%
+git rm -r  --cached %SUBMODULE%/
+git commit -m "removed submodule themes/ananke"
+ls %SUBMODULE%/.git
+rm -Rf %SUBMODULE%/.git
 rm .gitmodules
+rm -rf .git/modules/%SUBMODULE%
 
-
-# Remove the submodule directory from the superproject's .git/modules directory
-rm -rf .git/modules/themes/ananke
-rm -rf .git/modules/themes
-
-# Remove the entry in .gitmodules and remove the submodule directory located at path/to/submodule
-git rm -f themes/ananke
+### Remove submodule - v2
+git rm themes/ananke
+// rm -rf .git/modules/themes/ananke
