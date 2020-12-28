@@ -191,6 +191,11 @@ set THEME_NAME=ananke
 git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
 # It may be better to just copy theme from a theme repository [to reduce future breakage]
 #git clone https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+
+
+ls themes/ananke/.git
+rm -Rf themes/ananke/.git
+rm .gitmodules
 ```
 Update Config.toml with theme name 
 ```
@@ -230,6 +235,7 @@ git submodule deinit -f themes/ananke
 
 # Remove the submodule directory from the superproject's .git/modules directory
 rm -rf .git/modules/themes/ananke
+rm -rf .git/modules/themes
 
 # Remove the entry in .gitmodules and remove the submodule directory located at path/to/submodule
 git rm -f themes/ananke
